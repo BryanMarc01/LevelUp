@@ -3,6 +3,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { UserModule } from 'user/user.module';
+import { User } from 'user/user.entity';
 
 @Module({
   imports: [
@@ -13,7 +14,7 @@ import { UserModule } from 'user/user.module';
       username: 'postgres',
       password: 'level',  // Reemplaza con tu contraseña
       database: 'Level',  // Reemplaza con el nombre de tu base de datos
-      entities: [__dirname + '/**/*.entity{.ts,.js}'],
+      entities: [User],
       synchronize: true,
     }),
     GraphQLModule.forRoot<ApolloDriverConfig>({
