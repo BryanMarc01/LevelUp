@@ -55,6 +55,9 @@ jobs:
         run: |
           curl -s https://raw.githubusercontent.com/k3d-io/k3d/main/install.sh | bash
 
+      - name: Create k3d cluster
+        run: k3d cluster create levelcluster
+
       - name: Setup Kubernetes context
         run: |
           k3d kubeconfig merge levelcluster --kubeconfig-switch-context
