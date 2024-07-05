@@ -5,7 +5,7 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { UserModule } from 'user/user.module';
 import { User } from 'user/user.entity';
-
+//Modulo
 @Module({
   imports: [
     ConfigModule.forRoot({
