@@ -1,5 +1,5 @@
-# Usa la imagen base de Node.js
-FROM node:14
+# Usa una versión más reciente de Node.js
+FROM node:18
 
 # Establece el directorio de trabajo
 WORKDIR /app
@@ -16,11 +16,11 @@ COPY . .
 # Construye la aplicación
 RUN npm run build
 
-# Verifica el contenido del directorio dist
-RUN ls -la /app/dist
+# Verifica el contenido del directorio build
+RUN ls -la /app/build
 
 # Expone el puerto 3000
 EXPOSE 3000
 
 # Comando para iniciar la aplicación
-CMD ["node", "dist/main"]
+CMD ["node", "build/src/main"]
