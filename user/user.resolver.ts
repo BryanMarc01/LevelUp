@@ -7,6 +7,11 @@ import { CreateUserDto } from './dto/create-user.dto';
 export class UserResolver {
   constructor(private readonly userService: UserService) {}
 
+
+  @Query(returns => User)
+  async findUserById(@Args('id') id: number): Promise<User> {
+    return this.userService.findUserById(id);
+  }
   @Query(returns => [User])
   users() {
     return this.userService.findAll();
@@ -18,8 +23,11 @@ export class UserResolver {
   }
 
   @Mutation(returns => User)
-  createUser(@Args('createUserInput') createUserInput: CreateUserDto) {
-    return this.userService.create(createUserInput);
+  async createUser(
+    @Args('name') name: string,
+    @Args('email') email: string,
+  ): Promise<User> {
+    return this.userService.createUser(name, email);
   }
 
   @Mutation(returns => User)
