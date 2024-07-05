@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: levelup-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: levelup-app
+  template:
+    metadata:
+      labels:
+        app: levelup-app
+    spec:
+      containers:
+      - name: levelup-app
+        image: bryanmarc01/levelup-app:latest
+        ports:
+        - containerPort: 3000
