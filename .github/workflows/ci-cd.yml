@@ -51,8 +51,15 @@ jobs:
           docker tag levelup-app ${{ secrets.DOCKER_USERNAME }}/levelup-app:latest
           docker push ${{ secrets.DOCKER_USERNAME }}/levelup-app:latest
 
-      - name: Deploy to Kubernetes
+      - name: Install k3d
+        run: |
+          curl -s https://raw.githubusercontent.com/k3d-io/k3d/main/install.sh | bash
+
+      - name: Setup Kubernetes context
         run: |
           k3d kubeconfig merge levelcluster --kubeconfig-switch-context
+
+      - name: Deploy to Kubernetes
+        run: |
           kubectl apply -f deployment.yaml
           kubectl apply -f service.yaml
